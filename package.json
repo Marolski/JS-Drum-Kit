@@ -1,0 +1,15 @@
+{
+  "name": "js1",
+  "version": "1.0.0",
+  "description": "apka",
+  "main": "plik.js",
+  "scripts": {
+    "test": "node plik.js"
+  },
+  "author": "marol",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
