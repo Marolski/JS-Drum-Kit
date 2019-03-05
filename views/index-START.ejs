@@ -7,5 +7,24 @@
 </head>
 <body>
     <script type = "text/javascript" src = "/js/app.js" async></script>
+    <div style="height: 20px" ></div>
+    <div id='allBody' style="background-color:grey; width: 400px; margin: auto; background: rgba(20, 100, 51, .1); color: black; font-size: 16px; font-weight: bold;" align="center" >
+        <div>
+            <input type="range" id="frequency" min="0" max="2200" step="1" value="500" oninput="changeFrequency(this.value)" onchange="changeFrequency(this.value)" />
+    
+            <input type="range" id="detune" min="-200" max="200" step="5" value="0" oninput="changeDetune(this.value)" onchange="changeDetune(this.value)" />
+        
+            <input type="range" id="gain" min="0" max="100" step="1" value="10" oninput="changeGain(this.value)" onchange="changeGain(this.value)" />
+        </div>
+        <div>
+            <input type="radio" class="effect" checked="checked" onclick="changeEffect('sine'); check(this);" value="0"  />SINE
+            <input type="radio" class="effect checkmark" onclick="changeEffect('square'); check(this);" value="1"  />SQUARE
+            <input type="radio" class="effect" onclick="changeEffect('sawtooth'); check(this);" value="2"  />SAWTOOTH
+            <input type="radio" class="effect" onclick="changeEffect('triangle'); check(this);" value="3"  />TRIANGLE
+        </div>
+    
+        <button id="clickme" class="submit">start</button>
+        <button id="clickme1" class="submit">stop</button>
+    </div>
 </body>
 </html>

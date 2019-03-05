@@ -29,6 +29,7 @@ function checkButton(e){
             input.setAttribute('id', 'recorder');
             input.setAttribute('onclick', 'sound(this)');
             input.setAttribute('data-key', val);
+            input.setAttribute('class', 'upload');
             div.setAttribute('data-key', val);
             d.appendChild(div);
             div.appendChild(input);
@@ -91,7 +92,7 @@ function checkButton(e){
     }
     function removeInput(e){
         if(e.keyCode==27){
-            const input = document.querySelectorAll('input');
+            const input = document.getElementsByClassName('upload');
             if(input[0].classList.contains("input")){
                 for(let i=0; i<input.length; i++){
                     input[i].classList.remove('input');
@@ -104,6 +105,60 @@ function checkButton(e){
             }
         }
     }
+    const go = document.getElementById('clickme');
+    const st = document.getElementById('clickme1');
+    go.addEventListener('click',play);
+    st.addEventListener('click',stop);
+    var ctx = new AudioContext();
+    var o = null, g= null;
+    
+    function play(){
+        if(o==null){
+            o = ctx.createOscillator();
+            g= ctx.createGain();
+            o.start(ctx.currentTime);
+            o.connect(g);
+            g.connect(ctx.destination);
+        }
+        
+    }
+    function stop(){
+        //const o = ctx.createOscillator(), g= ctx.createGain();
+        o.stop(ctx.currentTime);
+        o.disconnect(g);
+        g.disconnect(ctx.destination);
+        o = null;
+        g = null;
+    }
+    function changeFrequency(val){
+         const freq = document.getElementById('frequency');
+        freq.value = val;
+        o.frequency.value = freq.value;
+    }
+    function changeDetune(val){
+        const det = document.getElementById('detune');
+        det.value = val;
+        o.detune.value = det.value;
+    }
+    function changeGain(val){
+        const gain = document.getElementById('gain');
+        console.log(val);
+        gain.value = val;
+        g.gain.value = gain.value;
+    }
+    function changeEffect(effect){
+        o.type = effect;
+    }
+    function check(e){
+        const radios = document.getElementsByClassName('effect');
+        for(i=0; i<radios.length; i++ ) {
+            if(radios[i]!=e){
+                radios[i].checked=false;
+                
+                }
+            }
+        
+        }
         
     const arr = ['sounds/clap.wav','sounds/hihat.wav', 'sounds/kick.wav', 'sounds/openhat.wav','sounds/boom.wav', 'sounds/ride.wav','sounds/snare.wav','sounds/tom.wav','sounds/tink.wav'];
 
